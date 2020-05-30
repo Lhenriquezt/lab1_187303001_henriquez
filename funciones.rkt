@@ -6,30 +6,35 @@
                (list "workspace1" "a1")
                (list "index1" "b1")
                (list "localRepository1" "c1")
-               (list "remoteRepository1" "d1")))
+               (list "remoteRepository1" "a1")))
+(define zona1 (list
+               (list "work" "a1")
+               (list "indx1" "b1")
+               (list "localRepo1" "c1")
+               (list "remoteRepo1" "a1")))
 
-(define workspace (list-ref zonas 0))
-(define index (list-ref zonas 1))
-(define localRepository (list-ref zonas 2))
-(define remoteRepository (list-ref zonas 3))
-
-(define pull (lambda (zonas)
+(define workspace (lambda (zonas)(list-ref zonas 0)))
+(define index (lambda (zonas)(list-ref zonas 1)))
+(define localRepository (lambda (zonas)(list-ref zonas 2)))
+(define remoteRepository (lambda (zonas)(list-ref zonas 3)))
+;desc: trae los archivos desde repositorio remoto al workspace
+(define pullInterno (lambda (workspace remoteRepository)
     (if (null? workspace)
       remoteRepository
       (if (null? remoteRepository)
           workspace
-          (append workspace remoteRepository)
+          (remove-duplicates (cons (car workspace) (pullInterno (cdr workspace) remoteRepository)))
           ))))
+(define pull (lambda(zonas)(pullInterno (workspace zonas) (remoteRepository zonas))))
 
 (define add (lambda (cambios) (lambda(zonas)
-     (if (null? index)
+     (if (null? (index zonas))
          cambios
          (if (null? cambios)
-             index
-             (append index cambios)
+             (index zonas)
+             (append (index zonas) cambios)
              )))))
 
-(check-duplicates (list "archivo1" "asdasda" "archivo12"))
 (define push (lambda (s) (lambda (x) (+ s x))))
 (define commit (lambda (s) (- s s)))
 
