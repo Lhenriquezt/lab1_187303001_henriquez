@@ -17,7 +17,10 @@
 (define index (lambda (zonas)(list-ref zonas 1)))
 (define localRepository (lambda (zonas)(list-ref zonas 2)))
 (define remoteRepository (lambda (zonas)(list-ref zonas 3)))
-;desc: trae los archivos desde repositorio remoto al workspace
+;desc: trae los archivos desde repositorio remoto al workspace reemplazando los duplicados
+;dom: Lista X lista
+;rec: Lista
+;tipo rec: natural
 (define pullInterno (lambda (workspace remoteRepository)
     (if (null? workspace)
       remoteRepository
@@ -34,8 +37,17 @@
              (index zonas)
              (append (index zonas) cambios)
              )))))
+;desc: envia los archivos desde el local repository al remote repository reemplazando los duplicados
+;dom: Lista 
+;rec: Lista
+(define push (lambda(zonas)
+     (if (null? (remoteRepository zonas))
+         (localRepository zonas)
+         (if (null? (localRepository zonas))
+             (remoteRepository zonas)
+             (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))
+             ))))
 
-(define push (lambda (s) (lambda (x) (+ s x))))
 (define commit (lambda (s) (- s s)))
 
 
