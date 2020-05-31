@@ -1,5 +1,6 @@
 #lang racket
 (require "funciones.rkt")
+(require "TDAzonas.rkt")
 (define git (lambda (comando)
              (cond
                ((equal? pull comando) pull)

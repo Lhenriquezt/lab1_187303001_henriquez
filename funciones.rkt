@@ -48,7 +48,13 @@
              (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))
              ))))
 
-(define commit (lambda (s) (- s s)))
+(define commit (lambda (comentario) (lambda(zonas)
+     (if (null? (index zonas))
+         (localRepository zonas)
+         (if (null? (localRepository zonas) )
+             (append (index zonas) (cons comentario null))
+             (append (localRepository zonas) (index zonas) (cons comentario null))
+             )))))
 
 
 (define git (lambda (comando)
