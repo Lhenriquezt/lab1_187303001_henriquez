@@ -1,5 +1,5 @@
 #lang racket
-(provide listazonas zonas zona1 workspace index localRepository remoteRepository zonas)
+(provide zonas workspace index localRepository remoteRepository zonas)
 ;TDA zonas
 ;Zonas = Nulo|
 ;        Zona X Zonas
@@ -18,7 +18,7 @@
 
 (define zona1 (list
                (list "work" "a1")
-               (list )
+               (list "indx1" "b1")
                (list "localRepo1" "c1")
                (list "remoteRepo1" "a1")))
 
@@ -33,7 +33,7 @@
 ;rec: zonas
 (define (listazonas . zonas)
   (if (andmap zonas? zonas)
-      (car zonas)
+      zonas
       null))
 
 ;Pertencia

@@ -1,11 +1,7 @@
 #lang racket
 
 (provide pull zonas)
-(require "TDAzonas.rkt")
-(require "push.rkt")
-(require "commit.rkt")
-(require "pull.rkt")
-#|
+
 (define zonas (list
                (list "workspace1" "a1")
                (list "index1" "b1")
@@ -21,8 +17,6 @@
 (define index (lambda (zonas)(list-ref zonas 1)))
 (define localRepository (lambda (zonas)(list-ref zonas 2)))
 (define remoteRepository (lambda (zonas)(list-ref zonas 3)))
-
-
 ;desc: trae los archivos desde repositorio remoto al workspace reemplazando los duplicados
 ;dom: Lista X lista
 ;rec: Lista
@@ -35,7 +29,6 @@
           (remove-duplicates (cons (car workspace) (pullInterno (cdr workspace) remoteRepository)))
           ))))
 (define pull (lambda(zonas)(pullInterno (workspace zonas) (remoteRepository zonas))))
-|#
 
 (define add (lambda (cambios) (lambda(zonas)
      (if (null? (index zonas))
@@ -44,7 +37,6 @@
              (index zonas)
              (append (index zonas) cambios)
              )))))
-#|
 ;desc: envia los archivos desde el local repository al remote repository reemplazando los duplicados
 ;dom: Lista 
 ;rec: Lista
@@ -53,14 +45,7 @@
          (localRepository zonas)
          (if (null? (localRepository zonas))
              (remoteRepository zonas)
-             (listazonas
-              (list
-              (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))
-              (index zonas)
-              (localRepository zonas)
-              (remoteRepository zonas)
-              )
-              )
+             (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))
              ))))
 
 (define commit (lambda (comentario) (lambda(zonas)
@@ -70,7 +55,7 @@
              (append (index zonas) (cons comentario null))
              (append (localRepository zonas) (index zonas) (cons comentario null))
              )))))
-|#
+
 
 (define git (lambda (comando)
               (cond
