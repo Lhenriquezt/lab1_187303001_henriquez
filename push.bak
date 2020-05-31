@@ -1,8 +1,0 @@
-#lang racket
-(define push (lambda(zonas)
-     (if (null? (remoteRepository zonas))
-         (localRepository zonas)
-         (if (null? (localRepository zonas))
-             (remoteRepository zonas)
-             (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))
-             ))))
