@@ -14,6 +14,5 @@
               (workspace zonas)
               (index zonas)
               (localRepository zonas)
-              (remove-duplicates(append (localRepository zonas) (remoteRepository zonas)))
-              ))
+              (remove-duplicates(append (localRepository zonas) (remoteRepository zonas)))))
              ))))
