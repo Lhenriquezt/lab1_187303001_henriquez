@@ -26,12 +26,13 @@
               (localRepository zonas)
               (remoteRepository zonas)))
              ))
-         (display "uno o mas elementos no pertenecen al workspace")
+         (display "uno o mas elementos no pertenecen al workspace\n")
          ))))
 
 ;desc: funcion que revisa si los elementos entregados estan en el workspace
 ;dom: lista X Lista
 ;rec:  Boolean
+;recurcion: cola
 (define inWorkspace (lambda(cambios workspace)
                       (if (not(null? cambios))
                           (if (not(boolean? (member (car cambios) workspace)))
@@ -40,3 +41,7 @@
                            )
                           #t
                       )))
+;Ejemplos:
+;((add (list "archivo1.c" ))zonas)
+;((add (list "archivo1.c" "assdarafafa.rkt"))zonas)
+;((add (list "archivo1.c" "workspace.rkt"))zonas)

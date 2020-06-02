@@ -13,6 +13,6 @@
              (listazonas(list
               (workspace zonas)
               (index zonas)
-              (localRepository zonas)
+               null
               (remove-duplicates(append (localRepository zonas) (remoteRepository zonas)))))
              ))))

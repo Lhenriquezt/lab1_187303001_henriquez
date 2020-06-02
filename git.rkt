@@ -13,7 +13,7 @@
                ((equal? commit comando) commit)
                ((equal? add comando) add)
                 )))
-
-(((git add) (list "archivo1.c" "prueba.rkt"))zonas)
-((git pull)zonas)
-(((git commit)"agrega elementos del index a localRepository")zonas)
+;Ejemplos funcion Git
+;(((git add) (list "archivo1.c"))zonas)
+;((git pull)zonas)
+;(((git commit)"agrega elementos del index a localRepository")zonas)
