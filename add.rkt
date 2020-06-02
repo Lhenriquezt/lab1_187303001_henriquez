@@ -5,9 +5,10 @@
 ;dom: lista X Zona X lista 
 ;rec: Zona
 ;recurcion : cola
-(define add (lambda (cambios) (lambda(zonas) 
-     (if (null? (index zonas))
-         (listazonas(list
+(define add (lambda (cambios) (lambda(zonas)
+     (if (inWorkspace cambios (workspace zonas))
+         (if (null? (index zonas))
+             (listazonas(list
               (workspace zonas)
                cambios
               (localRepository zonas)
@@ -24,16 +25,18 @@
               (append (index zonas) cambios)
               (localRepository zonas)
               (remoteRepository zonas)))
-             )))))
-;desc: envia los archivos especificados al Index
-;dom: lista X Zona
-;rec:  Zona
-;(define add (lambda (cambios) (lambda(zonas) (((addInterno cambios)zonas)null))))
+             ))
+         (display "uno o mas elementos no pertenecen al workspace")
+         ))))
 
-
-(define inWorkspace (lambda(cambios zonas)
-                      (if (list? (andmap(member cambios (workspace zonas))))
-                          cambios
-                          null
-                          )
-                      ))
+;desc: funcion que revisa si los elementos entregados estan en el workspace
+;dom: lista X Lista
+;rec:  Boolean
+(define inWorkspace (lambda(cambios workspace)
+                      (if (not(null? cambios))
+                          (if (not(boolean? (member (car cambios) workspace)))
+                              (inWorkspace (cdr cambios) workspace)
+                               #f
+                           )
+                          #t
+                      )))

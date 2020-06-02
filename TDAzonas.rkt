@@ -11,16 +11,16 @@
 ;dom: workspace X index X localRepository X remoteRepository
 ;rec: zona de trabajo
 (define zonas (list
-               (list "workspace1" "a1")
-               (list "index1" "b1")
-               (list "localRepository1" "c1")
-               (list "remoteRepository1" "a1")))
+               (list "workspace.rkt" "archivo1.c")
+               (list "I_archivo2.c" "index.rkt")
+               (list "localR.rkt" "L_archivo3.c")
+               (list "R_archivo4.c" "remote.rkt")))
 
 (define zona1 (list
-               (list "work" "a1")
+               (list "archivo1.c")
                (list )
-               (list "localRepo1" "c1")
-               (list "remoteRepo1" "a1")))
+               (list "archivo3.c")
+               (list "archivo4.c")))
 
 ;SELECTORES
 (define workspace (lambda (zonas)(list-ref  zonas 0)))
