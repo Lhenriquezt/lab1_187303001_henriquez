@@ -27,3 +27,6 @@
               (remoteRepository zonas)
               ))
              )))))
+;Ejemplos
+;((commit "prueba")zonas)
+;((commit "commit")zona1)

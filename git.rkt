@@ -4,8 +4,11 @@
 (require "commit.rkt")
 (require "pull.rkt")
 (require "add.rkt")
+(require "zonaString.rkt")
 
-
+;descr: funcion que llama a los comandos implementados de forma currificada
+;dom: funcion
+;rec: funcion
 (define git (lambda (comando)
               (cond
                ((equal? pull comando) pull)

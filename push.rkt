@@ -14,5 +14,9 @@
               (workspace zonas)
               (index zonas)
                null
-              (remove-duplicates(append (localRepository zonas) (remoteRepository zonas)))))
+              (remove-duplicates(append (remoteRepository zonas) (localRepository zonas)))))
              ))))
+;Ejemplos
+;(push zonas)
+;(push zona1)
+;(push (list (list "workspace")(list "index")(list "local Repo")(list "remote repo")))

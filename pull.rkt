@@ -28,3 +28,7 @@
               (localRepository zonas)
               (remoteRepository zonas)
                ))))
+;ejemplos
+;(pull (list (list "workspace")(list "index")(list "local Repo")(list "remote repo")))
+;(pull zonas)
+;(pull zona1)
