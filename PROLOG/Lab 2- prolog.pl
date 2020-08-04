@@ -68,3 +68,39 @@ repo_setRemote([Date, Name, Workspace, Index, LocalRepository, RemoteRepository]
        is_list(NewRemoteRepository),
        is_stringList(NewRemoteRepository).
 
+
+%OPERADORES
+% Revisa si los elementos de una listas estan contenidos en otra
+% Entrada: lista X lista
+% Salida: Boolean
+repo_checkElements([], _).
+repo_checkElements([HeadNewList|ColaNewList],List):-
+    is_list(List),
+    memberchk(HeadNewList, List),
+    repo_checkElements(ColaNewList,List).
+
+% Revisa si la lista entregada esta compuesta de strings
+% Entrada: Lista
+% Salida: Boolean
+is_stringList([]).
+is_stringList([X|Y]):- string(X), is_stringList(Y).
+
+
+%acceder a lista
+getElement([X|_],0,X).
+getElement([_|Y],Index,Element):-
+    number(Index),
+    Index > 0,
+    NewIndex is Index -1,
+    getElement(Y,NewIndex,Element).
+
+
+
+% Entrega RepoOutput dados los strins nombre del repositorio, Autor y una variable.
+% Entrada: String X String X Variable
+% Salida: Lista
+%ejemplos de uso:  gitInit("Workspace","luis henriquez",X).
+gitInit(RepoName, Autor, RepoOutput):-string(RepoName), string(Autor), get_time(X), convert_time(X,Date), RepoOutput=[Date, RepoName,[],[],[],[] ].
+
+
+
